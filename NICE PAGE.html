@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZAFAR_BROHI Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0a0a0a, #1a1a1a 60%, #000);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .card, .profile-card {
+      background: linear-gradient(145deg, #111, #1e1e1e);
+      border: 1px solid #ff0000aa;
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 40px #ff000088, 0 0 80px #ff000044, inset 0 0 30px #330000aa;
+      position: relative;
+      margin: 20px;
+    }
+    h1 { color: #ff4444; text-shadow: 0 0 10px #ff2222aa; margin-bottom: 20px; }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background-color: #222;
+      color: white;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .error {
+      color: #ff5555;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid #ff0000;
+      object-fit: cover;
+      box-shadow: 0 0 20px #ff000088, 0 0 40px #ff0000aa;
+      margin-bottom: 20px;
+    }
+    .tagline {
+      font-size: 14px;
+      color: #ff0055;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #ff005544;
+    }
+    .section {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px;
+      border-left: 4px solid #ff0000;
+      margin-top: 16px;
+      border-radius: 12px;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+    .section h3 {
+      color: #ff2222;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    .section p, .section a {
+      font-size: 13px;
+      color: #ddd;
+      word-break: break-word;
+    }
+    .section a {
+      color: #25D366;
+      text-decoration: none;
+    }
+    .eye-icon {
+      position: absolute;
+      right: 35px;
+      top: 203px;
+      color: #aaa;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML content truncated for brevity. Full version will be completed in another step. -->
+</body>
+</html>
+
+  <div class="card" id="loginCard">
+    <h1>Login</h1>
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+    <span class="eye-icon" onclick="togglePassword()">👁️</span>
+    <button onclick="validate()">Login</button>
+    <button onclick="forgotPassword()">Forgot Password?</button>
+    <div class="error" id="errorMsg"></div>
+    <div class="loading-spinner" id="loadingSpinner">Loading...</div>
+  </div>
+
+  <div class="profile-card" id="mainProfile" style="display:none;">
+    <img src="LOGO.png" alt="Logo" class="logo">
+    <h1>ZeRoX_ShadoW</h1>
+    <div class="tagline">⚡ Master of Code | Shadow of the Net ⚡</div>
+    <div class="section">
+      <h3>👁‍🗨 About</h3>
+      <p>Ek naam — ek saaya. Mein chupke se code karta hoon aur andhere mein deploy karta hoon. 🕶️</p>
+    </div>
+    <div class="section">
+      <h3>🧪 Skills</h3>
+      <p>HTML, CSS, JS, PHP, Python, Telegram Bots, Exploit UI, Web Shadows</p>
+    </div>
+    <div class="section">
+      <h3>🕸️ Contact</h3>
+      <p>
+        Telegram: @HACKER_X<br>
+        GitHub: /shadow-tech-x<br>
+       MY  WhatsApp Number 👉:
+        <a href="https://wa.me/923283898828?text=Assalamualaikum%20Zafi%20Bhi%20👋" target="_blank">Click to chat</a>
+      </p>
+    </div>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const maxAttempts = 3;
+    let attempts = 0;
+
+    function togglePassword() {
+      const passwordField = document.getElementById('password');
+      passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+    }
+
+    function forgotPassword() {
+      alert("Reset link bhijwana possible nahi. Yeh demo hai 🔒");
+    }
+
+    function validate() {
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const error = document.getElementById('errorMsg');
+      const spinner = document.getElementById('loadingSpinner');
+
+      if (!email || !email.includes('@')) {
+        error.textContent = "❌ Sahi email daalo.";
+        return;
+      }
+      if (pass.length < 4) {
+        error.textContent = "❌ Password kam az kam 4 letters ka ho.";
+        return;
+      }
+
+      spinner.style.display = 'block';
+      setTimeout(() => {
+        if(email === "ZAFI00@gmail.com" && pass === "ZAFI00") {
+          localStorage.setItem("loggedIn", "true");
+          showProfile();
+        } else {
+          attempts++;
+          error.textContent = "❌ Wrong email or password!";
+          if (attempts >= maxAttempts) {
+            error.textContent = "⛔ 3 bar wrong. Try again baad mein.";
+            document.querySelector("button[onclick='validate()']").disabled = true;
+          }
+        }
+        spinner.style.display = 'none';
+      }, 1000);
+    }
+
+    function showProfile() {
+      document.getElementById('loginCard').style.display = "none";
+      document.getElementById('mainProfile').style.display = "block";
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      document.getElementById('mainProfile').style.display = "none";
+      document.getElementById('loginCard').style.display = "block";
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem("loggedIn") === "true") {
+        showProfile();
+      }
+    };
+  </script>
+</body>
+</html>
